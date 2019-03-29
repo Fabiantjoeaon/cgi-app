@@ -14,13 +14,10 @@ export default class HomeScreen extends React.Component {
           contentContainerStyle={styles.contentContainer}
         >
           <View style={styles.welcomeContainer} />
-
           <View style={styles.getStartedContainer} />
         </ScrollView>
-
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>TAB BAR</Text>
-
           <View
             style={[styles.codeHighlightContainer, styles.navigationFilename]}
           />
