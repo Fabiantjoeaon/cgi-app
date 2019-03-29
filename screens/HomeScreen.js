@@ -1,10 +1,21 @@
 import React from "react";
 import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { MapView } from "expo";
+// import { MapView } from "expo";
+import MapView, { Marker } from "react-native-maps";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
+  };
+
+  state = {
+    markers: [
+      {
+        latlng: { latitude: 51.93768, longitude: 4.47866 },
+        title: "marker",
+        description: "description"
+      }
+    ]
   };
 
   render() {
@@ -13,12 +24,23 @@ export default class HomeScreen extends React.Component {
         <MapView
           style={{ flex: 1 }}
           initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: 51.924419,
+            longitude: 4.477733,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
           }}
-        />
+        >
+          {this.state.markers.map((marker, i) => (
+            <Marker
+              key={i.toString()}
+              coordinate={marker.latlng}
+              title={marker.title}
+              description={marker.description}
+              image={require("../assets/images/robot-prod.png")}
+              style={{ width: 10, height: 10, backgroundColor: "red" }}
+            />
+          ))}
+        </MapView>
       </View>
     );
   }
