@@ -36,8 +36,8 @@ export default class HomeScreen extends React.Component {
               coordinate={marker.latlng}
               title={marker.title}
               description={marker.description}
-              image={require("../assets/images/robot-prod.png")}
-              style={{ width: 10, height: 10, backgroundColor: "red" }}
+              image={require("../assets/images/alert.png")}
+              style={{ width: 10, height: 10 }}
             />
           ))}
         </MapView>
