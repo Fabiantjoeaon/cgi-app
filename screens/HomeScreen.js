@@ -1,5 +1,6 @@
 import React from "react";
 import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { MapView } from "expo";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -9,19 +10,15 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.welcomeContainer} />
-          <View style={styles.getStartedContainer} />
-        </ScrollView>
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>TAB BAR</Text>
-          <View
-            style={[styles.codeHighlightContainer, styles.navigationFilename]}
-          />
-        </View>
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+          }}
+        />
       </View>
     );
   }
