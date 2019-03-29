@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Platform, Image, StyleSheet, View } from "react-native";
 // import { MapView } from "expo";
 import MapView, { Marker } from "react-native-maps";
 
@@ -13,7 +13,37 @@ export default class HomeScreen extends React.Component {
       {
         latlng: { latitude: 51.93768, longitude: 4.47866 },
         title: "marker",
-        description: "description"
+        description: "description",
+        width: 30,
+        height: 30
+      },
+      {
+        latlng: { latitude: 51.92091, longitude: 4.47948 },
+        title: "marker",
+        description: "description",
+        width: 40,
+        height: 40
+      },
+      {
+        latlng: { latitude: 51.93352, longitude: 4.47763 },
+        title: "marker",
+        description: "description",
+        width: 15,
+        height: 15
+      },
+      {
+        latlng: { latitude: 51.909697, longitude: 4.450644 },
+        title: "marker",
+        description: "description",
+        width: 50,
+        height: 50
+      },
+      {
+        latlng: { latitude: 51.925383, longitude: 4.454308 },
+        title: "marker",
+        description: "description",
+        width: 60,
+        height: 60
       }
     ]
   };
@@ -36,9 +66,14 @@ export default class HomeScreen extends React.Component {
               coordinate={marker.latlng}
               title={marker.title}
               description={marker.description}
-              image={require("../assets/images/alert.png")}
-              style={{ width: 10, height: 10 }}
-            />
+              // image={require("../assets/images/alert.png")}
+              // style={{ width: 20, height: 20 }}
+            >
+              <Image
+                source={require("../assets/images/alert.png")}
+                style={{ width: marker.width, height: marker.height }}
+              />
+            </Marker>
           ))}
         </MapView>
       </View>
