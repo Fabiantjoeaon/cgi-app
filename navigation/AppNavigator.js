@@ -7,7 +7,7 @@ import {
 import MainTabNavigator from "./MainTabNavigator";
 import StartScreen from "../screens/StartScreen";
 
-// const StartStackNavigator = createStackNavigator({ Start: StartScreen });
+const StartStackNavigator = createStackNavigator({ Start: StartScreen });
 
 const MainStackNavigation = createStackNavigator({
   // Start: StartStackNavigator,

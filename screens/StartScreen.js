@@ -59,9 +59,7 @@ export default class StartScreen extends Component {
         <StyledButton
           title={"Ga door >"}
           onPress={() => {
-            {
-              /* this.props.navigation.navigate(); */
-            }
+            this.props.navigation.navigate("Home");
           }}
         />
       </StyledView>

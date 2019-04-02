@@ -5,10 +5,12 @@ import styled from "styled-components";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    header: null,
+    title: "Home"
   };
 
   state = {
+    mapType: "standard",
     markers: [
       {
         latlng: { latitude: 51.93768, longitude: 4.47866 },
@@ -49,10 +51,35 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+    console.log(this.state.mapType);
     return (
       <Container>
+        <IconContainer>
+          <TouchableHighlight
+            onPress={() => {
+              this.setState({ mapType: "satellite" });
+            }}
+          >
+            <Label>Bla</Label>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => {
+              this.setState({ mapType: "mutedStandard" });
+            }}
+          >
+            <Label>Bla</Label>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => {
+              this.setState({ mapType: "standard" });
+            }}
+          >
+            <Label>Bla</Label>
+          </TouchableHighlight>
+        </IconContainer>
         <MapView
           style={{ flex: 1 }}
+          mapType={this.state.mapType}
           initialRegion={{
             latitude: 51.924419,
             longitude: 4.477733,
@@ -61,37 +88,62 @@ export default class HomeScreen extends React.Component {
           }}
         >
           {this.state.markers.map((marker, i) => (
-            <>
-              <Marker
-                coordinate={marker.latlng}
-                title={marker.title}
-                description={marker.description}
-              >
-                <Image
-                  source={require("../assets/images/alert.png")}
-                  style={{ width: marker.width, height: marker.height }}
-                />
-              </Marker>
-            </>
+            <Marker
+              key={i}
+              coordinate={marker.latlng}
+              title={marker.title}
+              description={marker.description}
+            >
+              <Image
+                source={require("../assets/images/alert.png")}
+                style={{ width: marker.width, height: marker.height }}
+              />
+            </Marker>
           ))}
-          <NotificationContainer>
+          {/* <NotificationContainer>
             <Notification />
-          </NotificationContainer>
+          </NotificationContainer> */}
         </MapView>
       </Container>
     );
   }
 }
 
+const IconContainer = styled.View`
+  width: 80;
+  height: 180;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  left: 30;
+  top: 30;
+`;
+
+const Label = styled.Text``;
+
+const TouchableHighlight = styled.TouchableHighlight`
+  flex: 1;
+  height: 30;
+  width: 50;
+  margin-bottom: 10;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+`;
+
 const Container = styled.View`
   flex: 1;
+  z-index: 0;
   background: #fff;
+  position: relative;
 `;
 
 const NotificationContainer = styled.View`
   flex: 1;
   height: 100%;
-  background: red;
+  /* background: red; */
   display: flex;
   justify-content: flex-end;
 `;
