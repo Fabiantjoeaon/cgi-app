@@ -3,6 +3,151 @@ import { Platform, Image, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import styled from "styled-components";
 
+const markerTypes = [
+  // 1
+  [
+    {
+      latlng: { latitude: 51.93768, longitude: 4.47866 },
+      title: "marker",
+      description: "description",
+      width: 30,
+      height: 30
+    },
+    {
+      latlng: { latitude: 51.92091, longitude: 4.47948 },
+      title: "marker",
+      description: "description",
+      width: 40,
+      height: 40
+    },
+    {
+      latlng: { latitude: 51.93352, longitude: 4.47763 },
+      title: "marker",
+      description: "description",
+      width: 15,
+      height: 15
+    },
+    {
+      latlng: { latitude: 51.909697, longitude: 4.450644 },
+      title: "marker",
+      description: "description",
+      width: 50,
+      height: 50
+    },
+    {
+      latlng: { latitude: 51.925383, longitude: 4.454308 },
+      title: "marker",
+      description: "description",
+      width: 60,
+      height: 60
+    }
+  ],
+  // 2
+  [
+    {
+      latlng: { latitude: 51.93768, longitude: 4.47866 },
+      title: "marker",
+      description: "description",
+      width: 80,
+      height: 30
+    },
+    {
+      latlng: { latitude: 51.92091, longitude: 4.47948 },
+      title: "marker",
+      description: "description",
+      width: 90,
+      height: 40
+    },
+    {
+      latlng: { latitude: 51.93352, longitude: 4.47763 },
+      title: "marker",
+      description: "description",
+      width: 45,
+      height: 15
+    },
+    {
+      latlng: { latitude: 51.909697, longitude: 4.450644 },
+      title: "marker",
+      description: "description",
+      width: 80,
+      height: 50
+    },
+    {
+      latlng: { latitude: 51.925383, longitude: 4.454308 },
+      title: "marker",
+      description: "description",
+      width: 100,
+      height: 60
+    }
+  ],
+  // 3
+  [
+    {
+      latlng: { latitude: 51.93768, longitude: 4.47866 },
+      title: "marker",
+      description: "description",
+      width: 30,
+      height: 30
+    },
+    {
+      latlng: { latitude: 51.92091, longitude: 4.47948 },
+      title: "marker",
+      description: "description",
+      width: 40,
+      height: 40
+    },
+    {
+      latlng: { latitude: 51.93352, longitude: 4.47763 },
+      title: "marker",
+      description: "description",
+      width: 15,
+      height: 15
+    },
+    {
+      latlng: { latitude: 51.909697, longitude: 4.450644 },
+      title: "marker",
+      description: "description",
+      width: 50,
+      height: 50
+    },
+    {
+      latlng: { latitude: 51.925383, longitude: 4.454308 },
+      title: "marker",
+      description: "description",
+      width: 60,
+      height: 60
+    }
+  ]
+];
+
+const markerImages = (width, height, i) => {
+  switch (i) {
+    case 0:
+      return (
+        <Image
+          source={require("../assets/images/alert.png")}
+          style={{ width, height }}
+        />
+      );
+
+    case 1:
+      return (
+        <Image
+          source={require("../assets/images/icon.png")}
+          style={{ width, height }}
+        />
+      );
+
+    case 2:
+      return (
+        <Image
+          source={require("../assets/images/splash.png")}
+          style={{ width, height }}
+        />
+      );
+  }
+};
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -11,50 +156,13 @@ export default class HomeScreen extends React.Component {
 
   state = {
     mapType: "standard",
-    markers: [
-      {
-        latlng: { latitude: 51.93768, longitude: 4.47866 },
-        title: "marker",
-        description: "description",
-        width: 30,
-        height: 30
-      },
-      {
-        latlng: { latitude: 51.92091, longitude: 4.47948 },
-        title: "marker",
-        description: "description",
-        width: 40,
-        height: 40
-      },
-      {
-        latlng: { latitude: 51.93352, longitude: 4.47763 },
-        title: "marker",
-        description: "description",
-        width: 15,
-        height: 15
-      },
-      {
-        latlng: { latitude: 51.909697, longitude: 4.450644 },
-        title: "marker",
-        description: "description",
-        width: 50,
-        height: 50
-      },
-      {
-        latlng: { latitude: 51.925383, longitude: 4.454308 },
-        title: "marker",
-        description: "description",
-        width: 60,
-        height: 60
-      }
-    ]
+    markerType: 0
   };
 
   render() {
-    console.log(this.state.mapType);
     return (
       <Container>
-        <IconContainer>
+        <IconContainerLeft>
           <TouchableHighlight
             onPress={() => {
               this.setState({ mapType: "satellite" });
@@ -76,7 +184,31 @@ export default class HomeScreen extends React.Component {
           >
             <Label>Bla</Label>
           </TouchableHighlight>
-        </IconContainer>
+        </IconContainerLeft>
+
+        <IconContainerRight>
+          <TouchableHighlight
+            onPress={() => {
+              this.setState({ markerType: 0 });
+            }}
+          >
+            <Label>Bla</Label>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => {
+              this.setState({ markerType: 1 });
+            }}
+          >
+            <Label>Bla</Label>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => {
+              this.setState({ markerType: 2 });
+            }}
+          >
+            <Label>Bla</Label>
+          </TouchableHighlight>
+        </IconContainerRight>
         <MapView
           style={{ flex: 1 }}
           mapType={this.state.mapType}
@@ -87,22 +219,19 @@ export default class HomeScreen extends React.Component {
             longitudeDelta: 0.0421
           }}
         >
-          {this.state.markers.map((marker, i) => (
+          {markerTypes[this.state.markerType].map((marker, i) => (
             <Marker
               key={i}
               coordinate={marker.latlng}
               title={marker.title}
               description={marker.description}
             >
-              <Image
-                source={require("../assets/images/alert.png")}
-                style={{ width: marker.width, height: marker.height }}
-              />
+              {markerImages(marker.width, marker.height, this.state.markerType)}
             </Marker>
           ))}
-          {/* <NotificationContainer>
+          <NotificationContainer>
             <Notification />
-          </NotificationContainer> */}
+          </NotificationContainer>
         </MapView>
       </Container>
     );
@@ -117,8 +246,15 @@ const IconContainer = styled.View`
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  left: 30;
+
   top: 30;
+`;
+
+const IconContainerLeft = styled(IconContainer)`
+  left: 30;
+`;
+const IconContainerRight = styled(IconContainer)`
+  right: 20;
 `;
 
 const Label = styled.Text``;
@@ -142,8 +278,11 @@ const Container = styled.View`
 
 const NotificationContainer = styled.View`
   flex: 1;
-  height: 100%;
-  /* background: red; */
+
+  background: red;
+  position: absolute;
+  bottom: 0;
+
   display: flex;
   justify-content: flex-end;
 `;
